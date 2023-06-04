@@ -2,14 +2,10 @@ const express=require('express');
 const path = require('path');
 const routes = express.Router();
 
-routes.get('/',(req,res,next)=>{
-    res.sendFile(path.join(__dirname,'../views','home.html'));
-})
+const homePage=require('../controller/controllers')
 
-routes.post('/success',(req,res,next)=>{
-    const name=req.body.name;
-    const email=req.body.Email;
-    res.send(`'${name} ,'${email}) "your form successfuly filled" `)
-})
+routes.get('/',homePage.getHomePage)
+
+routes.post('/success',homePage.postHomePage)
 
 module.exports = routes

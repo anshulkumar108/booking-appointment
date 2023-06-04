@@ -7,15 +7,15 @@ const fs=require('fs');
 
 const formRoute=require('./routes/form.js')
 const detailRoutes=require('./routes/detail.js')
+const errorRoutes=require('./routes/error.js')
 
 app.use(bodyParser.urlencoded({extended:false}));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', detailRoutes);
 app.use('/contactus',formRoute);
 
 
-app.use((req,res,next)=>{
-    res.status(404).sendFile(path.join(__dirname,'views','404.html'))
-})
+app.use('',errorRoutes);
 
 app.listen(3000);
